@@ -7,7 +7,9 @@
             background-color: #ffe6f0;
             text-align: center;
             font-family: Arial, sans-serif;
-            padding-top: 100px;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 50px;
         }
 
         h1 {
@@ -18,7 +20,7 @@
         p {
             font-size: 20px;
             color: #333;
-            width: 60%;
+            width: 70%;
             margin: auto;
         }
 
@@ -37,38 +39,134 @@
             background-color: #e6005c;
         }
 
-        .hidden {
-            display: none;
+        #reasons {
             margin-top: 30px;
             font-size: 22px;
             color: #cc0066;
         }
+
+        img {
+            margin-top: 30px;
+            max-width: 70%;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px #ff4d88;
+            display: none;
+        }
+
+        /* Floating hearts */
+        .heart {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: red;
+            transform: rotate(45deg);
+            animation: float 5s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); opacity:1; }
+            100% { transform: translateY(-800px) rotate(45deg); opacity:0; }
+        }
     </style>
 </head>
-
 <body>
 
     <h1>Hi Love ❤️</h1>
 
     <p>
         I made this little website just for you.
-        Because even if I can't give you the whole world,
-        I can give you a tiny corner of the internet
+        Even if I can't give you the whole world,
+        I can give you a corner of the internet
         that says how much I love you.
     </p>
 
-    <button onclick="showMessage()">Click Me 💖</button>
+    <button id="startBtn">Start 💖</button>
 
-    <div id="secret" class="hidden">
-        Happy Valentine's Day!
-        You are my favorite person, always.
-        I love you more than words can explain.
-    </div>
+    <img id="couplePic" src="YOUR-IMAGE-LINK-HERE" alt="Us Together">
+
+    <button id="reasonsBtn" style="display:none;" onclick="showReasons()">Click to See Why I Love You 💌</button>
+
+    <div id="reasons"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="YOUR-MUSIC-LINK-HERE.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        function showMessage() {
-            document.getElementById("secret").style.display = "block";
+        const startBtn = document.getElementById("startBtn");
+        const couplePic = document.getElementById("couplePic");
+        const bgMusic = document.getElementById("bgMusic");
+        const reasonsBtn = document.getElementById("reasonsBtn");
+
+        const reasons = [
+            "You always make me smile 😊",
+            "Your hugs feel like home 🤗",
+            "You support me no matter what 💕",
+            "You make ordinary days magical ✨",
+            "I love your laugh 😍"
+        ];
+
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
         }
+
+        function startExperience() {
+            // Hide start button
+            startBtn.style.display = "none";
+
+            // Show picture
+            couplePic.style.display = "block";
+
+            // Play music
+            bgMusic.play();
+
+            // Show reasons button
+            reasonsBtn.style.display = "inline-block";
+
+            // Start floating hearts
+            setInterval(createHeart, 500);
+        }
+
+        function showReasons() {
+            const container = document.getElementById("reasons");
+            container.innerHTML = "";
+            reasons.forEach((reason, index) => {
+                setTimeout(() => {
+                    const p = document.createElement("p");
+                    p.textContent = reason;
+                    container.appendChild(p);
+                }, index * 1000);
+            });
+        }
+
+        startBtn.addEventListener("click", startExperience);
     </script>
 
 </body>
