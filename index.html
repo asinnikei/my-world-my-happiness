@@ -1,194 +1,241 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For You ❤️</title>
-    <style>
-        body {
-            background-color: #ffe6f0;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            padding-top: 50px;
-        }
-
-        h1 {
-            color: #ff4d88;
-            font-size: 50px;
-        }
-
-        p {
-            font-size: 20px;
-            color: #333;
-            width: 70%;
-            margin: auto;
-        }
-
-        button {
-            margin-top: 30px;
-            padding: 15px 25px;
-            font-size: 18px;
-            background-color: #ff4d88;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #e6005c;
-        }
-
-        #reasons p{
-          font-size: 16px;
-          font-style: italic;
-          color: #cc0066;
-          width: 70%;
-          margin: 10px auto 0 auto;
+  <title>For You ❤️</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 50px;
     }
 
-        img {
-            display: none; /* hidden until Start clicked */
-            margin: 30px auto 0 auto; /* center horizontally */
-            max-width: 30%;
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px #ff4d88;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
+    h1 {
+      color: #ff4d88;
+      font-size: 50px;
+    }
 
-        /* Floating hearts */
-        .heart {
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            background: red;
-            transform: rotate(45deg);
-            animation: float 5s linear infinite;
-        }
+    p {
+      font-size: 20px;
+      color: #333;
+      width: 70%;
+      margin: auto;
+    }
 
-        .heart::before,
-        .heart::after {
-            content: '';
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            background: red;
-            border-radius: 50%;
-        }
+    button {
+      margin-top: 30px;
+      padding: 15px 25px;
+      font-size: 18px;
+      background-color: #ff4d88;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-        .heart::before {
-            top: -10px;
-            left: 0;
-        }
+    button:hover {
+      background-color: #e6005c;
+    }
 
-        .heart::after {
-            left: 10px;
-            top: 0;
-        }
+    /* Layout for picture (left) + reasons (right) */
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      width: 90%;
+      margin: 30px auto 0 auto;
+    }
 
-        @keyframes float {
-            0% { transform: translateY(0) rotate(45deg); opacity:1; }
-            100% { transform: translateY(-800px) rotate(45deg); opacity:0; }
-        }
-    </style>
+    .left,
+    .right {
+      width: 45%;
+    }
+
+    #reasons p{
+      font-size: 16px;
+      font-style: italic;
+      color: #cc0066;
+      width: 100%;
+      margin: 10px 0 0 0;
+      text-align: left;
+    }
+
+    #counter {
+      color:#cc0066;
+      font-size:14px;
+      margin-top:10px;
+      font-style: italic;
+      text-align: left;
+    }
+
+    img {
+      display: none; /* hidden until Start clicked */
+      width: 100%;
+      max-width: 260px; /* smaller + consistent */
+      border-radius: 15px;
+      box-shadow: 0px 0px 15px #ff4d88;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    /* Floating hearts */
+    .heart {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 5s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity:1; }
+      100% { transform: translateY(-800px) rotate(45deg); opacity:0; }
+    }
+
+    /* Mobile: stack picture over reasons */
+    @media (max-width: 800px) {
+      .content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .left, .right {
+        width: 90%;
+      }
+      #reasons p, #counter {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <h1>Hi Love ❤️</h1>
+  <h1>Hi Love ❤️</h1>
 
-    <p> I made this little website just for you :DD </p>
-    <p> Even if I can't give you the whole world, </p>
-    <p> I can give you a corner of the internet </p>
-    <p> that says how much I love you. </p>
+  <!-- prettier 2-line intro -->
+  <p>I made this little website just for you :DD — even if I can't give you the whole world,</p>
+  <p>I can give you a corner of the internet that says how much I love you.</p>
 
-    <button id="startBtn">Start 💖</button>
+  <button id="startBtn">Start 💖</button>
 
-    <img id="couplePic" src="/my-world-my-happiness/us.jpg" alt="Us Together">
+  <div class="content">
+    <!-- LEFT: picture -->
+    <div class="left">
+      <img id="couplePic" src="/my-world-my-happiness/us.jpg" alt="Us Together">
+    </div>
 
-    <button id="reasonsBtn" style="display:none;">Next reason 💌</button>
+    <!-- RIGHT: reasons -->
+    <div class="right">
+      <button id="reasonsBtn" style="display:none;">click to know why and how much I love you 💌</button>
 
-    <div id="reasons"></div>
-    <p id="counter" style="color:#cc0066; font-size:14px; margin-top:10px; font-style: italic;"></p>
+      <div id="reasons"></div>
+      <p id="counter"></p>
+    </div>
+  </div>
 
-    <!-- Background Music -->
-    <audio id="bgMusic" loop>
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
     <source src="/my-world-my-happiness/oursong.mp3" type="audio/mpeg">
-    </audio>
+  </audio>
 
-    <script>
-        const startBtn = document.getElementById("startBtn");
-        const couplePic = document.getElementById("couplePic");
-        const bgMusic = document.getElementById("bgMusic");
-        const reasonsBtn = document.getElementById("reasonsBtn");
+  <script>
+    const startBtn = document.getElementById("startBtn");
+    const couplePic = document.getElementById("couplePic");
+    const bgMusic = document.getElementById("bgMusic");
+    const reasonsBtn = document.getElementById("reasonsBtn");
 
-        const reasons = [
-            "I’ve never felt this kind of love before. You make me feel so safe and warm that I sometimes want to cry from happiness.",
-            "You never stop trying to understand me, even with my rocky moments.",
-            "You’re forever so gorgeous, and I hope you know how handsome you are.",
-            "You always make me feel seen and make time for me, no matter how busy you are.",
-            "You’re literally walking husband material. Yep, I said it.",
-            "I love you forever and ever, and I’m so glad we went on that Discord call and took that selfie in class back in 10th grade.",
-            "Out of all the chapters in my book, I’m only interested in the ones you’re in.",
-            "You’re my favorite character in my story—everyone would think of you whenever they hear me."
-        ];
+    const reasons = [
+      "I’ve never felt this kind of love before. You make me feel so safe and warm that I sometimes want to cry from happiness.",
+      "You never stop trying to understand me, even with my rocky moments.",
+      "You’re forever so gorgeous, and I hope you know how handsome you are.",
+      "You always make me feel seen and make time for me, no matter how busy you are.",
+      "You’re literally walking husband material. Yep, I said it.",
+      "I love you forever and ever, and I’m so glad we went on that Discord call and took that selfie in class back in 10th grade.",
+      "Out of all the chapters in my book, I’m only interested in the ones you’re in.",
+      "You’re my favorite character in my story—everyone would think of you whenever they hear me."
+    ];
 
-        // Floating hearts
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
 
-        function startExperience() {
-          startBtn.style.display = "none";
+    function startExperience() {
+      startBtn.style.display = "none";
 
-          couplePic.style.display = "block";
-          setTimeout(() => { couplePic.style.opacity = 1; }, 50);
+      couplePic.style.display = "block";
+      setTimeout(() => { couplePic.style.opacity = 1; }, 50);
 
-          bgMusic.play();
-          reasonsBtn.style.display = "inline-block";
-          reasonsBtn.onclick = showNextReason;
+      bgMusic.play();
+      reasonsBtn.style.display = "inline-block";
+      reasonsBtn.onclick = showNextReason;
 
-          setInterval(createHeart, 500);
+      setInterval(createHeart, 500);
     }
 
     let reasonIndex = 0;
 
-        function showNextReason() {
-            const container = document.getElementById("reasons");
-            const counter = document.getElementById("counter");
+    function showNextReason() {
+      const container = document.getElementById("reasons");
+      const counter = document.getElementById("counter");
 
-        if (reasonIndex >= reasons.length) {
-            reasonsBtn.textContent = "Replay 💖";
-            counter.textContent = "End of my little love list 💌";
+      // after first click, change the button text to "Next reason 💌"
+      if (reasonIndex === 0) {
+        reasonsBtn.textContent = "Next reason 💌";
+      }
 
-            reasonsBtn.onclick = () => {
-                reasonIndex = 0;
-                container.innerHTML = "";
-                counter.textContent = "";
-                reasonsBtn.textContent = "Next reason 💌";
-                reasonsBtn.onclick = showNextReason;
+      if (reasonIndex >= reasons.length) {
+        reasonsBtn.textContent = "Replay 💖";
+        counter.textContent = "End of my little love list 💌";
+
+        reasonsBtn.onclick = () => {
+          reasonIndex = 0;
+          container.innerHTML = "";
+          counter.textContent = "";
+          reasonsBtn.textContent = "click to know why and how much I love you 💌";
+          reasonsBtn.onclick = showNextReason;
         };
-
         return;
+      }
+
+      const p = document.createElement("p");
+      p.textContent = reasons[reasonIndex];
+      container.appendChild(p);
+
+      counter.textContent = `${reasonIndex + 1} / ${reasons.length}`;
+      reasonIndex++;
     }
 
-    const p = document.createElement("p");
-    p.textContent = reasons[reasonIndex];
-
-    container.appendChild(p);
-
-    counter.textContent = `${reasonIndex + 1} / ${reasons.length}`;
-
-    reasonIndex++;
-}
-
-        startBtn.addEventListener("click", startExperience);
-    </script>
+    startBtn.addEventListener("click", startExperience);
+  </script>
 
 </body>
 </html>
