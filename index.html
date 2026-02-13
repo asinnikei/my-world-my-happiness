@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For You ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6f0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding-top: 100px;
+        }
+
+        h1 {
+            color: #ff4d88;
+            font-size: 50px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #333;
+            width: 60%;
+            margin: auto;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 15px 25px;
+            font-size: 18px;
+            background-color: #ff4d88;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e6005c;
+        }
+
+        .hidden {
+            display: none;
+            margin-top: 30px;
+            font-size: 22px;
+            color: #cc0066;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Hi Love ❤️</h1>
+
+    <p>
+        I made this little website just for you.
+        Because even if I can't give you the whole world,
+        I can give you a tiny corner of the internet
+        that says how much I love you.
+    </p>
+
+    <button onclick="showMessage()">Click Me 💖</button>
+
+    <div id="secret" class="hidden">
+        Happy Valentine's Day!
+        You are my favorite person, always.
+        I love you more than words can explain.
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("secret").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
