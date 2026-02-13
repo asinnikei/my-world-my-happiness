@@ -44,15 +44,18 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 30px;
-      width: 90%;
+      gap: 20px;        /* smaller gap */
+      width: 80%;       /* tighter container */
       margin: 30px auto 0 auto;
-    }
+  }
 
-    .left,
-    .right {
-      width: 45%;
-    }
+  .left {
+      width: 40%;
+  }
+
+.right {
+  width: 55%;
+}
 
     #reasons p{
       font-size: 16px;
@@ -74,7 +77,7 @@
     img {
       display: none; /* hidden until Start clicked */
       width: 100%;
-      max-width: 260px; /* smaller + consistent */
+      max-width: 320px; /* smaller + consistent */
       border-radius: 15px;
       box-shadow: 0px 0px 15px #ff4d88;
       opacity: 0;
@@ -136,7 +139,7 @@
   <h1>Hi Love ❤️</h1>
 
   <!-- prettier 2-line intro -->
-  <p>I made this little website just for you :DD — even if I can't give you the whole world,</p>
+  <p>I made this little website just for you :DD, even if I can't give you the whole world,</p>
   <p>I can give you a corner of the internet that says how much I love you.</p>
 
   <button id="startBtn">Start 💖</button>
